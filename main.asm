@@ -1,4 +1,4 @@
-[org 0x7c00]
+[org 0x7c00] 
 [bits 16]
 
 section .text
@@ -20,10 +20,12 @@ ZeroSeg:
   cld
 sti
 
-push ax
-xor ax, ax
-int 0x13
-pop ax
+;push ax
+;xor ax, ax
+;int 0x13
+;pop ax
+;mov dl, 0x80
+;int 0x13
 ;mov si, STR
 ;call printf
 
@@ -32,15 +34,30 @@ pop ax
 
 ;mov si, STR_TH
 ;call printf
-mov al, 1
-mov cl, 2
-call readDisk
-jmp test
+;mov al, 1
+;mov cl, 2
+;call readDisk
+
+mov ax, 0x2400
+int 0x15
+
+;mov dx, [0x7c00 + 510]
+
+call testA20
+mov dx, ax
+call printh
+
+call enableA20
+mov dx, ax
+call printh
 
 jmp $
 
 %include "./printf.asm"
 %include "./readDisk.asm"
+%include "./printh.asm"
+%include "./testA20.asm"
+%include "./enableA20.asm"
 
 ;STR: db "Loaded in 16-bit Real Mode to memory location 0x7c00.", 0x0a, 0x0d, 0
 ;STR_T: db "These messages use the BIOS interrupt 0x10 with the ah register sent to 0x0e.", 0x0a, 0x0d, 0
