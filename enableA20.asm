@@ -46,7 +46,6 @@ pusha
   call testA20
   cmp ax, 1
   je .done
-  xor ax, ax
   ret
 
 ;FastA20
@@ -57,8 +56,11 @@ pusha
   call testA20
   cmp al, 1
   je .done
-  xor ax, ax
   ret
+
+  mov si, NO_A20
+  call printf
+  jmp $
 
 .done:
   popa

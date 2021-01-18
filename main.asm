@@ -1,11 +1,11 @@
-[org 0x7c00] 
-[bits 16]
+[org 0x7c00] ;org sets the assembler location counter, specifies the base address of the section of file 
+[bits 16] ;Instructions which use 32 bits prefixed with 0x66 byte
 
-section .text
+section .text ;text section keeps the actual code
 
-  global main
+  global main ;Symbol should be visible to linker b/c other object files will use it
 
-main:
+main: ;Linker entry point
 
 cli
 jmp 0x0000:ZeroSeg
@@ -21,11 +21,11 @@ ZeroSeg:
 sti
 
 ;push ax
-;xor ax, ax
+xor ax, ax
 ;int 0x13
 ;pop ax
-;mov dl, 0x80
-;int 0x13
+mov dl, 0x80
+int 0x13
 ;mov si, STR
 ;call printf
 
@@ -34,9 +34,9 @@ sti
 
 ;mov si, STR_TH
 ;call printf
-;mov al, 1
-;mov cl, 2
-;call readDisk
+mov al, 1
+mov cl, 2
+call readDisk
 
 mov ax, 0x2400
 int 0x15
@@ -51,6 +51,8 @@ call enableA20
 mov dx, ax
 call printh
 
+jmp sTwo
+
 jmp $
 
 %include "./printf.asm"
@@ -64,12 +66,23 @@ jmp $
 ;STR_TH: db "Heraclitus test boot complete. Power off this machine and load a real OS, dummy.", 0
 DISK_ERR_MSG: db "Error Loading Disk.", 0x0a, 0x0d, 0
 TEST_STR: db "You are in the second sector.", 0x0a, 0x0d, 0
+NO_A20: db "No A20 Line.", 0x0a, 0x0d, 0
+NO_LM: db "Long mode not supported.", 0x0a, 0x0d, 0
+YES_LM: db "Long mode supported.", 0x0a, 0x0d, 0
 
 times 510-($-$$) db 0
 dw 0xaa55
 
-test:
+sTwo:
 mov si, TEST_STR
 call printf
+
+call checklm
+
+cli
+
+
+
+%include "./checklm.asm"
 
 times 512 db 0
