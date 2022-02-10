@@ -29,7 +29,7 @@ The current task being undertaken is to create a bootloader using UEFI. I have r
 
 ## Collaborators
 
-Sean Widjaja (Project Manager) 
+Sean Widjaja (Project Manager)<br/> 
 Joseph Gerani 
 
 More to be added from Discord group...  
