@@ -25,11 +25,12 @@ This list dictates what classes at SJSU (and potentially other schools) aid with
 * Operating Systems (CS 149)
 
 ## Current Task
-The current task being undertaken is to create a bootloader using UEFI. I have replicated the project from theMike97 (See above) 
+The current task being undertaken is to create a bootloader using UEFI. I have replicated the project from theMike97 (See above) in the Youtube tutorial series. It is entirely in x86 Assembly and a good place to start.  
 
 ## Collaborators
 
 Sean Widjaja (Project Manager)<br/> 
-Joseph Gerani 
+Joseph Gerani<br/>
+Samuel Low<br/>
+Paul Zhou<br/>
 
-More to be added from Discord group...  
