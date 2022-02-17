@@ -29,7 +29,8 @@ The current task being undertaken is to create a bootloader using UEFI. I have r
 
 ## Collaborators
 
-Sean Widjaja (Project Manager)<br/> 
+Sean Widjaja (Project Manager)<br/>
+Bhargavi Datye<br/> 
 Joseph Gerani<br/>
 Samuel Low<br/>
 Paul Zhou<br/>
